@@ -23,3 +23,9 @@ version: 0.1.0
 # It is recommended to use it with quotes.
 appVersion: "1.16.0"
 icon: https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/v1.11.1/deployments/helm-chart/chart-icon.png
+
+dependencies:
+ - name: grafana
+   version: 6.21.7
+   repository: file://../common/grafana
+   condition: grafana.enabled
