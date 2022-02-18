@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 grafana:
-  enabled: false
+  enabled: true
   adminUser: ruan
   adminPassword: password
 
@@ -64,7 +64,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: nginx-ewerton.turmalinda.jacexperts.io
+    - host: nginx-ewerton.turmalinda.jac.bsb.br
       paths:
         - path: /
           pathType: ImplementationSpecific
