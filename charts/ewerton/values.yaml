@@ -1,14 +1,30 @@
-# Default values for ewerton.
+# Default values for ruan.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+grafana:
+  enabled: false
+  adminUser: ruan
+  adminPassword: password
+
 replicaCount: 1
+
 
 image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
 
 imagePullSecrets: []
 nameOverride: ""
@@ -39,9 +55,10 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+  targetPort: 80
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
@@ -67,6 +84,20 @@ resources: {}
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
+
+persistence:
+  enabled: true
+  size: 1Gi
+  name: volume
+
+volumes:
+  - name: volume
+    persistentVolumeClaim:
+      claimName: volume
+
+volumeMounts:
+  - mountPath: /home/ruan
+    name: volume
 
 autoscaling:
   enabled: false
