@@ -16,6 +16,9 @@ fullnameOverride: ""
 
 persistence:
   name: "volume-theia"
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
   size: 1Gi
 
 volumes:
@@ -58,7 +61,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 3000
+  port: 80
 
 ingress:
   enabled: true
